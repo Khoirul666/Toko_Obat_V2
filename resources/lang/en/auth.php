@@ -2,18 +2,29 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-
+    'failed'                    => 'Identitas tersebut tidak cocok dengan data kami.',
+    'throttle'                  => 'Terlalu banyak usaha masuk. Silahkan coba lagi dalam :seconds detik.',
+    'username'                  => 'Username',
+    'password'                  => 'Password',
+    'login'                     => 'Login',
+    'remember_me'               => 'Ingat Login Saya',
+    'logout'                    => 'Keluar',
+    'profile'                   => 'Profil Saya',
+    'register'                  => 'Buat Akun Baru',
+    'have_an_account'           => 'Saya sudah punya Akun',
+    'need_account'              => 'Belum punya Akun?',
+    'change_password'           => 'Ganti Password',
+    'forgot_password'           => 'Lupa Password?',
+    'reset_password'            => 'Reset Password',
+    'password_confirmation'     => 'Ulangi Password',
+    'old_password'              => 'Password Lama',
+    'new_password'              => 'Password Baru',
+    'new_password_confirmation' => 'Ulangi Password Baru',
+    'send_reset_password_link'  => 'Kirim Link Reset Password',
+    'old_password_failed'       => 'Password lama tidak cocok!',
+    'old_password_success'      => 'Password berhasil diubah!',
+    'welcome_please_login'      => 'Selamat datang, silakan login',
+    'welcome'                   => 'Selamat datang kembali :name.',
+    'login_welcome'             => 'Selamat datang di aplikasi <br><strong>:app_name</strong>',
+    'login_notes'               => 'Silakan login untuk melanjutkan aktifitas Anda.',
 ];
