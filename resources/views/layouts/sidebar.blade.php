@@ -36,17 +36,17 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item {{request()->is('satuan*') ? request()->is('daftar*') ? 'active' : 'active' : ''}} has-sub">
+                <li class="sidebar-item {{request()->is('satuan*') || request()->is('produk*') ? 'active' : ''}} has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-collection-fill"></i>
                         <span>Produk</span>
                     </a>
-                    <ul class="submenu {{request()->is('satuan*') ? 'active' : ''}}">
+                    <ul class="submenu {{request()->is('satuan*') || request()->is('produk*') ? 'active' : ''}}">
                         <li class="submenu-item ">
                             <a href="{{route('satuan.index')}}">Satuan</a>
                         </li>
-                        <li class="submenu-item {{request()->is('daftar*') ? 'active' : ''}}">
-                            <a href="">Daftar</a>
+                        <li class="submenu-item ">
+                            <a href="{{route('produk.index')}}">Daftar</a>
                         </li>
                     </ul>
                 </li>

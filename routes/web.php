@@ -18,11 +18,21 @@ Route::group(['middleware' => 'auth'], function () {
         Route::DELETE('/{satuan}', 'SatuanController@destroy')->name('destroy');
     });
 
+    /*
+     * Produk Route
+     */
+    Route::group(['prefix' => 'produk', 'as' => 'produk.'], function () {
+        Route::get('/', 'ProdukController@index')->name('index');
+        Route::POST('store', 'ProdukController@store')->name('store');
+        Route::PATCH('/{produk}', 'ProdukController@update')->name('update');
+        Route::DELETE('/{produk}', 'ProdukController@destroy')->name('destroy');
+    });
+
     Route::group(['prefix' => 'penjualan', 'as' => 'penjualan.'], function () {
         Route::get('/', 'PenjualanController@index')->name('index');
         Route::post('/', 'PenjualanController@add')->name('add');
         Route::get('{draftKey}', 'PenjualanController@show')->name('show');
-        Route::POST('remove', 'PenjualanController@destroy')->name('destroy');
+        Route::POST('remove', 'PenjualanController@remove')->name('remove');
     });
 
     Route::group(['prefix' => 'pembelian', 'as' => 'pembelian.'], function () {
