@@ -21,7 +21,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item {{request()->is('penjualan*') ? request()->is('pembelian*') ? 'active' : '' : '' }}" has-sub">
+                <li class="sidebar-item {{request()->is('penjualan*') ? request()->is('pembelian*') ? 'active' : '' : '' }} has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-file-earmark-medical-fill"></i>
                         <span>Transaksi</span>
@@ -58,7 +58,7 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                            <a href="{{route('penjualan.index')}}">Penjualan</a>
+                            <a href="">Penjualan</a>
                         </li>
                         <li class="submenu-item ">
                             <a href="">Pembelian</a>

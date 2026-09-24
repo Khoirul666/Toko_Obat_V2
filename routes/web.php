@@ -33,6 +33,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/', 'PenjualanController@add')->name('add');
         Route::get('{draftKey}', 'PenjualanController@show')->name('show');
         Route::POST('remove', 'PenjualanController@remove')->name('remove');
+        Route::post('add-draft-item/{draftKey}/{product}', 'PenjualanController@addDraftItem')->name('add-draft-item');
+        Route::patch('update-draft-item/{draftKey}', 'PenjualanController@updateDraftItem')->name('update-draft-item');
+        Route::delete('remove-draft-item/{draftKey}', 'PenjualanController@removeDraftItem')->name('remove-draft-item');
+        Route::patch('{draftKey}/proccess', 'PenjualanController@proccess')->name('draft-proccess');
+        Route::post('drafts/{draftKey}', 'PenjualanController@store')->name('store');
     });
 
     Route::group(['prefix' => 'pembelian', 'as' => 'pembelian.'], function () {

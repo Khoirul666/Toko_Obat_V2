@@ -71,4 +71,46 @@ class PenjualanCollection
     {
         return $this->count() == 0;
     }
+
+    public function addItemToDraft($draftKey, Item $item)
+    {
+        $content = $this->getContent();
+        $draft = $content[$draftKey];
+
+        $item->price = $item->product->price;
+        $item->subtotal = $item->product->price * $item->qty;
+
+        $foundItem = $draft->search($item->product);
+
+        if (!is_null($foundItem)) {
+            $itemKey = $draft->searchItemKeyFor($item->product);
+            $content[$draftKey]->updateItem($itemKey, ['qty' => $foundItem->qty + $item->qty]);
+        } else {
+            $content[$draftKey]->addItem($item);
+        }
+
+        $this->session->put($this->instance, $content);
+
+        return $item->product;
+    }
+
+    public function removeItemFromDraft($draftKey, $itemKey)
+    {
+        $content = $this->getContent();
+        $content[$draftKey]->removeItem($itemKey);
+
+        $this->session->put($this->instance, $content);
+    }
+    public function updateDraftAttributes($draftKey, $draftAttributes)
+    {
+        $content = $this->getContent();
+
+        foreach ($draftAttributes as $attribute => $value) {
+            $content[$draftKey]->{$attribute} = $value;
+        }
+
+        $this->session->put($this->instance, $content);
+
+        return $content[$draftKey];
+    }
 }

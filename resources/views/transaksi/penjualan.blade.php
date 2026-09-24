@@ -47,13 +47,17 @@
     @endif
     @includeWhen(!PenjualanCollection::isEmpty(),'transaksi.part.tab-data-penjualan')
     @if($draft)
+    @if (Request::get('action') == 'confirm')
+    @include('transaksi.part.draft-confirm')
+    @else
     <div class="col-8 col-lg-8">
         <div class="card">
             <div class="card-header">
-                <h4>BARANG BELANJA</h4>
+                <h4>BARANG BELANJA<small>({{$draft->getItemsCount()}} Item, {{$draft->getTotalQty()}} Pcs)</small></h4>
+                <hr class="dropdown-divider">
             </div>
             <div class="card-body">
-                aasca
+                @include('transaksi.part.draft-item-list')
             </div>
         </div>
     </div>
@@ -61,12 +65,14 @@
         <div class="card">
             <div class="card-header">
                 <h4>DETAIL TRANSAKSI</h4>
+                <hr class="dropdown-divider">
             </div>
             <div class="card-body">
-
+                @include('transaksi.part.form-draft-detail')
             </div>
         </div>
     </div>
+    @endif
     @endif
 </section>
 @endsection

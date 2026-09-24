@@ -2,8 +2,8 @@
 
 namespace App\Transaksi;
 
-use App\Product;
-use App\Transaction;
+use App\Produk;
+use App\Transaksi;
 
 /**
  * Transaction Draft Interface.
@@ -91,14 +91,14 @@ abstract class TransaksiDraft
         return $item;
     }
 
-    public function search(Product $product)
+    public function search(Produk $product)
     {
         $productItem = $this->items()->where('id', $product->id)->first();
 
         return $productItem;
     }
 
-    public function searchItemKeyFor(Product $product)
+    public function searchItemKeyFor(Produk $product)
     {
         return $this->items()->search(function ($item, $key) use ($product) {
             return $item->product->id == $product->id;
@@ -112,7 +112,7 @@ abstract class TransaksiDraft
 
     public function store()
     {
-        $transaction = new Transaction();
+        $transaction = new Transaksi();
         $transaction->invoice_no = $this->getNewInvoiceNo();
         $transaction->items = $this->getItemsArray();
         $transaction->customer = $this->customer;
@@ -130,7 +130,7 @@ abstract class TransaksiDraft
     {
         $prefix = date('ym');
 
-        $lastTransaction = Transaction::orderBy('invoice_no', 'desc')->first();
+        $lastTransaction = Transaksi::orderBy('invoice_no', 'desc')->first();
 
         if (!is_null($lastTransaction)) {
             $lastInvoiceNo = $lastTransaction->invoice_no;
@@ -163,7 +163,7 @@ abstract class TransaksiDraft
 
     public function destroy()
     {
-        $cart = app(CartCollection::class);
+        $cart = app(PenjualanCollection::class);
 
         return $cart->removeDraft($this->draftKey);
     }
