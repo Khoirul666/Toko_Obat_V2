@@ -5,6 +5,7 @@ return [
     'product_search'     => 'Cari Produk',
     'list'               => 'Transaksi',
     'item_added'         => 'Produk <strong>:product_name </strong> telah ditambahkan <strong>:qty item</strong>',
+    'item_update'        => 'Produk <strong>:product_name </strong> telah diubah <strong>:qty item</strong>, <strong>Diskon :discount</strong>',
     'min_search_query'   => 'Min. 1 huruf...',
     'search_box_cleanup' => 'Bersihkan Pencarian',
 ];

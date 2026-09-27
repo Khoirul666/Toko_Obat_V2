@@ -4,8 +4,9 @@
             <tr>
                 <th>Nama Produk</th>
                 <th>Satuan</th>
+                <th>Stok</th>
                 <th>Harga</th>
-                <th>Pilihan</th>
+                <th>Pilihan Penjualan</th>
             </tr>
         </thead>
         <tbody>
@@ -13,6 +14,7 @@
             <tr>
                 <td>{{$produk->name}}</td>
                 <td>{{$produk->unit->name}}</td>
+                <td>{{$produk->stok}}</td>
                 <td>{{format_rp($produk->price)}}</td>
                 <td>
                     <form action="{{ route('penjualan.add-draft-item', [$draftKey, $produk->id]) }}" method="post" style="display:inline">

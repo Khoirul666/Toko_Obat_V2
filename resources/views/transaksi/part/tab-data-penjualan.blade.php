@@ -63,7 +63,7 @@ use Facades\App\Transaksi\PenjualanCollection;
                                     @endif
                                 </div>
                             </div>
-                            @includeWhen($queryPenjualan,'transaksi.part.search-result',[
+                            @includeWhen($queryPenjualan,'transaksi.part.search-result-penjualan',[
                             'draftType' => $draft->type,
                             'draftKey' => $draft->draftKey
                             ])

@@ -48,7 +48,7 @@
     @includeWhen(!PenjualanCollection::isEmpty(),'transaksi.part.tab-data-penjualan')
     @if($draft)
     @if (Request::get('action') == 'confirm')
-    @include('transaksi.part.draft-confirm')
+    @include('transaksi.part.draft-confirm-penjualan')
     @else
     <div class="col-8 col-lg-8">
         <div class="card">
@@ -57,7 +57,7 @@
                 <hr class="dropdown-divider">
             </div>
             <div class="card-body">
-                @include('transaksi.part.draft-item-list')
+                @include('transaksi.part.draft-item-list-penjualan')
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
                 <hr class="dropdown-divider">
             </div>
             <div class="card-body">
-                @include('transaksi.part.form-draft-detail')
+                @include('transaksi.part.form-draft-detail-penjualan')
             </div>
         </div>
     </div>

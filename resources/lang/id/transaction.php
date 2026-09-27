@@ -26,6 +26,7 @@ return [
     'cashier'         => 'Kasir',
     'search'          => 'Cari Invoice',
     'not_found'       => 'Transaksi tidak ditemukan.',
+    'pembelian'       => 'Pembelian',
     'penjualan'       => 'Penjualan',
 
     // Actions
@@ -40,7 +41,10 @@ return [
     // Attributes
     'invoice_no'     => 'No. Invoice',
     'customer'       => 'Customer',
+    'sales'          => 'Penjual',
+    'sales_name'     => 'Nama Penjual',
     'customer_name'  => 'Nama Customer',
+    'sales_phone' => 'Hp/Telp.',
     'customer_phone' => 'Hp/Telp.',
     'payment'        => 'Jumlah Dibayar',
     'notes'          => 'Catatan Transaksi',

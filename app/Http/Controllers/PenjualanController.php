@@ -92,6 +92,7 @@ class PenjualanController extends Controller
 
     public function proccess(Request $request, $draftKey)
     {
+        // dd($request, $draftKey);
         $this->validate($request, [
             'customer.name'  => 'required|string|max:30',
             'customer.phone' => 'nullable|string|max:20',
