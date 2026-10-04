@@ -62,7 +62,7 @@
                     {!! Form::close() !!}
 
                     {!! Form::open([
-                    'route' => ['penjualan.remove-draft-item', $purchased->draftKey],
+                    'route' => ['pembelian.remove-draft-item', $purchased->draftKey],
                     'method' => 'delete',
                     'onsubmit' => "return confirm('Yakin ingin menghapus Item ini?')"
                     ]) !!}

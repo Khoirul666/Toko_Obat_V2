@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('add-draft-item/{draftKey}/{product}', 'PembelianController@addDraftItem')->name('add-draft-item');
         Route::patch('{draftKey}/proccess', 'PembelianController@proccess')->name('draft-proccess');
         Route::patch('update-draft-item/{draftKey}/{product}', 'PembelianController@updateDraftItem')->name('update-draft-item');
+        Route::delete('remove-draft-item/{draftKey}', 'PembelianController@removeDraftItem')->name('remove-draft-item');
         Route::post('drafts/{draftKey}', 'PembelianController@store')->name('store');
     });
     /*

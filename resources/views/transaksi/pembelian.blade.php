@@ -34,14 +34,6 @@
                     Anda belum memiliki Daftar Transaksi, silakan buat Transaksi Baru:
                 </h2>
             </div>
-            <div class="card-body">
-                <form class="form form-horizontal" action="{{route('pembelian.add')}}" method="POST">
-                    {{csrf_field()}}
-                    <div class="form-body">
-                        <input type="submit" class="btn btn-primary" name="create-sale" id="cash-sale" value="{{ trans('transaction.create') }}">
-                    </div>
-                </form>
-            </div>
         </div>
     </div>
     @endif

@@ -132,6 +132,12 @@ class PembelianController extends Controller
         return back();
         // dd($request, $draftKey, $item);
     }
+    public function removeDraftItem(Request $request, $draftKey)
+    {
+        $this->keranjang->removeItemFromDraft($draftKey, $request->item_index);
+
+        return back();
+    }
 
     public function store(Request $request, $draftKey)
     {
@@ -140,11 +146,12 @@ class PembelianController extends Controller
         if (is_null($purchased)) {
             return redirect()->route('pembelian.index');
         }
-
         $transaction = $purchased->store();
+        // dd($purchased->destroy);
         $purchased->destroy();
-        flash(trans('transaction.created', ['invoice_no' => $transaction->invoice_no]), 'success')->important();
+        flash(trans('transaction.created', ['invoice_no' => $transaction->invoice_no]), 'success');
 
-        return redirect()->route('pembelian.show', $transaction->invoice_no);
+        // return redirect()->route('pembelian.show', $transaction->invoice_no);
+        return redirect()->route('pembelian.index');
     }
 }

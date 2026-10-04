@@ -115,4 +115,18 @@ class PenjualanController extends Controller
 
         return redirect()->route('penjualan.show', [$draftKey, 'action' => 'confirm']);
     }
+    public function store(Request $request, $draftKey)
+    {
+        $draft = $this->keranjang->get($draftKey);
+        if (is_null($draft)) {
+            return redirect()->route('penjualan.index');
+        }
+
+        $transaction = $draft->store();
+        $draft->destroy();
+        flash(trans('transaction.created', ['invoice_no' => $transaction->invoice_no]), 'success');
+
+        // return redirect()->route('penjualan.show', $transaction->invoice_no);
+        return redirect()->route('penjualan.index');
+    }
 }

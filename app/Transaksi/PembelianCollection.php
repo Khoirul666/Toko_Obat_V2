@@ -95,7 +95,7 @@ class PembelianCollection
         $foundItem = $draft->search($item->product);
         if (!is_null($foundItem)) {
             $itemKey = $draft->searchItemKeyFor($item->product);
-            $content[$draftKey]->updateItem($itemKey, ['qty' => $item->qty, 'item_discount' => $item->item_discount,'subtotal'=>$item->subtotal-$item->item_discount_subtotal]);
+            $content[$draftKey]->updateItem($itemKey, ['qty' => $item->qty, 'item_discount' => $item->item_discount, 'subtotal' => $item->subtotal - $item->item_discount_subtotal]);
         }
         $this->session->put($this->instance, $content);
 
@@ -117,6 +117,13 @@ class PembelianCollection
     {
         $content = $this->getContent();
         $content->pull($draftKey);
+        $this->session->put($this->instance, $content);
+    }
+    public function removeItemFromDraft($draftKey, $itemKey)
+    {
+        $content = $this->getContent();
+        $content[$draftKey]->removeItem($itemKey);
+
         $this->session->put($this->instance, $content);
     }
 }
