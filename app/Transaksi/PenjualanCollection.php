@@ -101,6 +101,20 @@ class PenjualanCollection
 
         $this->session->put($this->instance, $content);
     }
+    public function UpdateItemToDraft($draftKey, Item $item)
+    {
+        // dd($draftKey, $item);
+        $content = $this->getContent();
+        $draft = $content[$draftKey];
+        $foundItem = $draft->search($item->product);
+        if (!is_null($foundItem)) {
+            $itemKey = $draft->searchItemKeyFor($item->product);
+            $content[$draftKey]->updateItem($itemKey, ['qty' => $item->qty, 'item_discount' => $item->item_discount, 'subtotal' => $item->subtotal - $item->item_discount_subtotal]);
+        }
+        $this->session->put($this->instance, $content);
+
+        return $item->product;
+    }
     public function updateDraftAttributes($draftKey, $draftAttributes)
     {
         $content = $this->getContent();

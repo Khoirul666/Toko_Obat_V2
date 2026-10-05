@@ -123,6 +123,14 @@ abstract class TransaksiDraft
 
         $transaction->save();
 
+        // Update stok produk
+        foreach ($this->items as $item) {
+            $product = $item->product;
+
+            $product->stok -= $item->qty;
+            $product->save();
+        }
+
         return $transaction;
     }
 

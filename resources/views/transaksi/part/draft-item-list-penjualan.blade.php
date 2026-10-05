@@ -19,35 +19,60 @@
                 <small class="text-primary">({{ $item->unit }})</small>
             </td>
             <td>{{ format_rp($item->price) }}</td>
-            {{ Form::open(['route' => ['penjualan.update-draft-item', $draft->draftKey], 'method' => 'patch']) }}
-            {{ Form::hidden('item_key', $key) }}
             <td class="text-right">
-                {{ Form::text('item_discount', $item->item_discount, ['id' => 'item_discount-' . $key,'style' => 'width:80px;text-align:right']) }}
+                Rp. {{ Form::text('item_discount', $item->item_discount, [
+                'id' => 'item_discount-' . $key,
+                'form' => 'update-item-form-' . $key,
+                'style' => 'width:80px;text-align:right'
+                ]) }}
             </td>
             <td class="text-center">
-                {{ Form::number('qty', $item->qty, ['id' => 'qty-' . $key,'style' => 'width:50px;text-align:center','min' => 1]) }}
+                {{ Form::number('qty', $item->qty, [
+                'id' => 'qty-' . $key,
+                'form' => 'update-item-form-' . $key,
+                'style' => 'width:50px;text-align:center',
+                'min' => 1
+                ]) }}
             </td>
             <td class="text-right">{{ format_rp($item->subtotal) }}</td>
             {{ Form::submit('update-item-' . $key, ['style'=>'display:none']) }}
             {{ Form::close() }}
             <td class="text-center show-on-hover-parent">
+                <div class="d-flex">
+                    {{-- FORM UPDATE --}}
+                    {!! Form::open([
+                    'route' => [
+                    'penjualan.update-draft-item',
+                    $draft->draftKey,$item->id
+                    ],
+                    'method' => 'patch',
+                    'id' => 'update-item-form-' . $key
+                    ]) !!}
 
-                {!! Form::open([
-                'route' => ['penjualan.remove-draft-item', $draft->draftKey],
-                'method' => 'delete',
-                'onsubmit' => "return confirm('Yakin ingin menghapus Item ini?')"
-                ]) !!}
+                    {!! Form::hidden('item_key', $key) !!}
 
-                {!! Form::hidden('item_index', $key) !!}
+                    {!! Form::submit('Update', [
+                    'class' => 'btn btn-info btn-xs',
+                    ]) !!}
 
-                {!! Form::submit('x', [
-                'id' => 'remove-item-' . $key,
-                'class' => 'btn btn-danger btn-xs show-on-hover',
-                'title' => 'Hapus item ini'
-                ]) !!}
+                    {!! Form::close() !!}
 
-                {!! Form::close() !!}
+                    {!! Form::open([
+                    'route' => ['penjualan.remove-draft-item', $draft->draftKey],
+                    'method' => 'delete',
+                    'onsubmit' => "return confirm('Yakin ingin menghapus Item ini?')"
+                    ]) !!}
 
+                    {!! Form::hidden('item_index', $key) !!}
+
+                    {!! Form::submit('x', [
+                    'id' => 'remove-item-' . $key,
+                    'class' => 'btn btn-danger btn-xs show-on-hover',
+                    'title' => 'Hapus item ini'
+                    ]) !!}
+
+                    {!! Form::close() !!}
+                </div>
             </td>
         </tr>
         @empty

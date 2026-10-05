@@ -16,6 +16,7 @@
                             <th class="text-center">{{ __('app.table_no') }}</th>
                             <th>{{ __('produk.name') }}</th>
                             <th>{{ __('produk.unit') }}</th>
+                            <th class="text-right">{{ __('produk.qty') }}</th>
                             <th class="text-right">{{ __('produk.price') }}</th>
                             <th class="text-center">{{ __('app.action') }}</th>
                         </tr>
@@ -26,6 +27,7 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$produk->name}}</td>
                             <td class="text-right">{{$produk->unit->name}}</td>
+                            <td class="text-right">{{$produk->stok}}</td>
                             <td class="text-right">{{format_rp($produk->price)}}</td>
                             <td class="text-center">
                                 {!! link_to_route('produk.index', trans('app.edit'), ['action' => 'edit', 'id' => $produk->id], ['id' => 'edit-produk-' . $produk->id]) !!} |

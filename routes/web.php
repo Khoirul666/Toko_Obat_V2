@@ -35,9 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('{draftKey}', 'PembelianController@show')->name('show');
         Route::POST('remove', 'PembelianController@remove')->name('remove');
         Route::post('add-draft-item/{draftKey}/{product}', 'PembelianController@addDraftItem')->name('add-draft-item');
-        Route::patch('{draftKey}/proccess', 'PembelianController@proccess')->name('draft-proccess');
         Route::patch('update-draft-item/{draftKey}/{product}', 'PembelianController@updateDraftItem')->name('update-draft-item');
         Route::delete('remove-draft-item/{draftKey}', 'PembelianController@removeDraftItem')->name('remove-draft-item');
+        Route::patch('{draftKey}/proccess', 'PembelianController@proccess')->name('draft-proccess');
         Route::post('drafts/{draftKey}', 'PembelianController@store')->name('store');
     });
     /*
@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('{draftKey}', 'PenjualanController@show')->name('show');
         Route::POST('remove', 'PenjualanController@remove')->name('remove');
         Route::post('add-draft-item/{draftKey}/{product}', 'PenjualanController@addDraftItem')->name('add-draft-item');
-        Route::patch('update-draft-item/{draftKey}', 'PenjualanController@updateDraftItem')->name('update-draft-item');
+        Route::patch('update-draft-item/{draftKey}/{product}', 'PenjualanController@updateDraftItem')->name('update-draft-item');
         Route::delete('remove-draft-item/{draftKey}', 'PenjualanController@removeDraftItem')->name('remove-draft-item');
         Route::patch('{draftKey}/proccess', 'PenjualanController@proccess')->name('draft-proccess');
         Route::post('drafts/{draftKey}', 'PenjualanController@store')->name('store');

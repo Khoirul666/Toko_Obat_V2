@@ -10,6 +10,10 @@ use App\Transaksi;
  */
 class PembelianDraft extends TransaksiDraft
 {
+    public $draftKey;
+    public $type = 'penjualan';
+    public $type_id = 1;
+
     public $items = [];
 
     public $customer = ['name' => null, 'phone' => null];
@@ -122,6 +126,14 @@ class PembelianDraft extends TransaksiDraft
         $transaction->user_id = auth()->id() ?: 1;
 
         $transaction->save();
+
+        // Update stok produk
+        foreach ($this->items as $item) {
+            $product = $item->product;
+
+            $product->stok += $item->qty;
+            $product->save();
+        }
 
         return $transaction;
     }

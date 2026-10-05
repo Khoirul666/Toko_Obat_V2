@@ -83,6 +83,27 @@ class PenjualanController extends Controller
 
         return back();
     }
+    public function updateDraftItem(Request $request, $draftKey, Produk $product)
+    {
+        // dd($request, $draftKey, $product);
+        $item = new Item($product, $request->qty);
+        $item->setItemDiscount($request->item_discount);
+
+        $this->keranjang->UpdateItemToDraft($draftKey, $item);
+
+        flash(trans('cart.item_update', [
+            'product_name' => $product->name . ' (' . $product->unit->name . ')',
+            'qty'          => $request->qty,
+            'discount'     => $request->item_discount,
+        ]));
+
+        if ($request->has('query')) {
+            return redirect()->route('pembelian.show', [$draftKey, 'query' => $request->get('query')]);
+        }
+
+        return back();
+        // dd($request, $draftKey, $item);
+    }
     public function removeDraftItem(Request $request, $draftKey)
     {
         $this->keranjang->removeItemFromDraft($draftKey, $request->item_index);
