@@ -118,11 +118,11 @@ class PenjualanController extends Controller
             'customer.name'  => 'required|string|max:30',
             'customer.phone' => 'nullable|string|max:20',
             'total'          => 'required|numeric',
-            'payment'        => 'required|numeric|min:' . $request->get('total') . '|max:' . ($request->get('total') + 100000),
+            // 'payment'        => 'required|numeric|min:' . $request->get('total') . '|max:' . ($request->get('total') + 100000),
+            'payment'        => 'required|numeric|min:' . $request->get('total'),
             'notes'          => 'nullable|string|max:100',
         ], [
             'payment.min' => 'Pembayaran minimal ' . format_rp($request->get('total')) . '.',
-            'payment.max' => 'Pembayaran terlalu besar ' . format_rp($request->get('payment')) . '.',
         ]);
         $draft = $this->keranjang->updateDraftAttributes($draftKey, $request->only('customer', 'notes', 'payment'));
 
@@ -141,6 +141,25 @@ class PenjualanController extends Controller
         $draft = $this->keranjang->get($draftKey);
         if (is_null($draft)) {
             return redirect()->route('penjualan.index');
+        }
+
+        // check ketersedian stok
+        // Cek stok
+        foreach ($draft->items as $item) {
+
+            $stok = $item->product->stok;
+            $qty  = $item->qty;
+
+            if ($qty > $stok) {
+                flash(
+                    'Stok ' . $item->product->name .
+                        ' tidak mencukupi. Stok tersedia: ' . $stok .
+                        ', jumlah yang diminta: ' . $qty,
+                    'danger'
+                );
+
+                return redirect()->route('penjualan.index');
+            }
         }
 
         $transaction = $draft->store();

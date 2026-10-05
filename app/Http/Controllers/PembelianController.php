@@ -79,11 +79,11 @@ class PembelianController extends Controller
             'sales.name'     => 'required|string|max:30',
             'sales.phone'    => 'nullable|string|max:20',
             'total'          => 'required|numeric',
-            'payment'        => 'required|numeric|min:' . $request->get('total') . '|max:' . ($request->get('total') + 100000),
+            // 'payment'        => 'required|numeric|min:' . $request->get('total') . '|max:' . ($request->get('total') + 100000),
+            'payment'        => 'required|numeric|min:' . $request->get('total'),
             'notes'          => 'nullable|string|max:100',
         ], [
             'payment.min' => 'Pembayaran minimal ' . format_rp($request->get('total')) . '.',
-            'payment.max' => 'Pembayaran terlalu besar ' . format_rp($request->get('payment')) . '.',
         ]);
         $purchased = $this->keranjang->updateDraftAttributes($draftKey, $request->only('sales', 'notes', 'payment'));
 
