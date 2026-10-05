@@ -113,7 +113,7 @@ class PembelianController extends Controller
 
     public function updateDraftItem(Request $request, $draftKey, Produk $product)
     {
-        dd($request, $draftKey, $product);
+        // dd($request, $draftKey, $product);
         $item = new Item($product, $request->qty);
         $item->setItemDiscount($request->item_discount);
 
