@@ -18,6 +18,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::DELETE('/{satuan}', 'SatuanController@destroy')->name('destroy');
     });
     /*
+     * Kategori Route
+     */
+    Route::group(['prefix' => 'kategori', 'as' => 'kategori.'], function () {
+        Route::get('/', 'KategoriController@index')->name('index');
+        Route::POST('store', 'KategoriController@store')->name('store');
+        Route::PATCH('/{kategori}', 'KategoriController@update')->name('update');
+        Route::DELETE('/{kategori}', 'KategoriController@destroy')->name('destroy');
+    });
+    /*
      * Produk Route
      */
     Route::group(['prefix' => 'produk', 'as' => 'produk.'], function () {
@@ -53,5 +62,22 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('remove-draft-item/{draftKey}', 'PenjualanController@removeDraftItem')->name('remove-draft-item');
         Route::patch('{draftKey}/proccess', 'PenjualanController@proccess')->name('draft-proccess');
         Route::post('drafts/{draftKey}', 'PenjualanController@store')->name('store');
+    });
+    /*
+     * Transaksi Penjualan
+     */
+    Route::group(['prefix' => 'transaksi', 'as' => 'transaksi.'], function () {
+        /*
+        * Transaksi Penjualan
+        */
+        Route::group(['prefix' => 'penjualan', 'as' => 'penjualan.'], function () {
+            Route::get('/', 'TransaksiPenjualanController@index')->name('index');
+        });
+        /*
+        * Transaksi Pembelian
+        */
+        Route::group(['prefix' => 'pembelian', 'as' => 'pembelian.'], function () {
+            Route::get('/', 'TransaksiPembelianController@index')->name('index');
+        });
     });
 });

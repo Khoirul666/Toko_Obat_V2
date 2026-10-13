@@ -17,7 +17,9 @@ class CreateProdukTable extends Migration
             $table->increments('id');
             $table->string('name', 60);
             $table->unsignedInteger('unit_id');
-            $table->unsignedInteger('price');
+            $table->unsignedInteger('kategori_id');
+            $table->unsignedInteger('price')->default(0);
+            $table->unsignedInteger('sell')->default(0);
             $table->unsignedInteger('stok')->default('0');
             $table->timestamps();
         });

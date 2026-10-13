@@ -17,11 +17,25 @@
                 <input type="text" name="price" id="price" class="form-control" value="{{old('price')}}" required>
             </div>
             <div class="form-group">
+                <label for="sell">{{__('produk.sell')}}</label>
+                <input type="text" name="sell" id="sell" class="form-control" value="{{old('sell')}}" required>
+            </div>
+            <div class="form-group">
                 <label for="unit_id">{{__('produk.unit')}}</label>
                 <select name="unit_id" id="unit_id" class="form-control" required>
                     @foreach($satuan as $satuan)
                     <option value="{{ $satuan->id }}" {{ old('unit_id', optional($editableProduct)->unit_id) == $satuan->id ? 'selected' : '' }}>
                         {{ $satuan->name }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="kategori_id">{{__('produk.kategori')}}</label>
+                <select name="kategori_id" id="kategori_id" class="form-control" required>
+                    @foreach($kategori as $kategori)
+                    <option value="{{ $kategori->id }}" {{ old('kategori_id', optional($editableProduct)->kategori_id) == $kategori->id ? 'selected' : '' }}>
+                        {{ $kategori->name }}
                     </option>
                     @endforeach
                 </select>
@@ -43,11 +57,25 @@
                 <input type="text" name="price" id="price" class="form-control" value="{{old('price',$editableProduct->price)}}" required>
             </div>
             <div class="form-group">
+                <label for="sell">{{__('produk.sell')}}</label>
+                <input type="text" name="sell" id="sell" class="form-control" value="{{old('sell',$editableProduct->sell)}}" required>
+            </div>
+            <div class="form-group">
                 <label for="unit_id">{{__('produk.unit')}}</label>
                 <select name="unit_id" id="unit_id" class="form-control" required>
                     @foreach($satuan as $satuan)
                     <option value="{{ $satuan->id }}" {{ old('unit_id', optional($editableProduct)->unit_id) == $satuan->id ? 'selected' : '' }}>
                         {{ $satuan->name }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="kategori_id">{{__('produk.kategori')}}</label>
+                <select name="kategori_id" id="kategori_id" class="form-control" required>
+                    @foreach($kategori as $kategori)
+                    <option value="{{ $kategori->id }}" {{ old('kategori_id', optional($editableProduct)->kategori_id) == $kategori->id ? 'selected' : '' }}>
+                        {{ $kategori->name }}
                     </option>
                     @endforeach
                 </select>

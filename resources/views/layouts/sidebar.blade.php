@@ -41,9 +41,12 @@
                         <i class="bi bi-collection-fill"></i>
                         <span>Produk</span>
                     </a>
-                    <ul class="submenu {{request()->is('satuan*') || request()->is('produk*') ? 'active' : ''}}">
+                    <ul class="submenu {{request()->is('satuan*') || request()->is('kategori*')  || request()->is('produk*') ? 'active' : ''}}">
                         <li class="submenu-item ">
                             <a href="{{route('satuan.index')}}">Satuan</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{route('kategori.index')}}">Kategori</a>
                         </li>
                         <li class="submenu-item ">
                             <a href="{{route('produk.index')}}">Daftar</a>
@@ -51,17 +54,17 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item  has-sub">
+                <li class="sidebar-item {{request()->is('transaksi*') ? 'active' : ''}} has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Laporan</span>
                     </a>
-                    <ul class="submenu ">
+                    <ul class="submenu {{request()->is('transaksi*') ? 'active' : ''}} ">
                         <li class="submenu-item ">
-                            <a href="">Penjualan</a>
+                            <a href="{{route('transaksi.penjualan.index')}}">Penjualan</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="">Pembelian</a>
+                            <a href="{{route('transaksi.pembelian.index')}}">Pembelian</a>
                         </li>
                     </ul>
                 </li>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Produk;
 use App\Satuan;
+use App\Kategori;
 
 class ProdukController extends Controller
 {
@@ -12,6 +13,7 @@ class ProdukController extends Controller
     {
         $editableProduct = null;
         $satuan = Satuan::all();
+        $kategori = Kategori::all();
         $produk = Produk::orderBy('name')
             ->with('unit')->get();
 
@@ -19,17 +21,21 @@ class ProdukController extends Controller
             $editableProduct = Produk::find($request->get('id'));
         }
         // dd($produk); 
-        return view('produk.produk', compact('produk', 'editableProduct', 'satuan'));
+        return view('produk.produk', compact('produk', 'editableProduct', 'satuan', 'kategori'));
     }
 
     public function store(Request $request)
     {
+        // dd($request);
         $newProduct = $request->validate([
             'name'         => 'required|max:20',
             'price'        => 'required|numeric',
+            'sell'         => 'required|numeric',
             'unit_id'      => 'required|numeric|exists:satuan,id',
+            'kategori_id'  => 'required|numeric|exists:kategori,id',
         ]);
 
+        // dd($newProduct);
         Produk::create($newProduct);
 
         flash(trans('produk.created'), 'success');
@@ -39,11 +45,13 @@ class ProdukController extends Controller
 
     public function update(Request $request, Produk $produk)
     {
-
+        // dd($request);
         $productData = $request->validate([
             'name'         => 'required|max:20',
             'price'        => 'required|numeric',
+            'sell'        => 'required|numeric',
             'unit_id'      => 'required|numeric|exists:satuan,id',
+            'kategori_id'      => 'required|numeric|exists:kategori,id',
         ]);
 
         $produk->update($productData);

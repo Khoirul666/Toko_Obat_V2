@@ -36,7 +36,7 @@ class PembelianCollection
         return $content;
     }
 
-    public function add(TransaksiDraft $draft)
+    public function add(PembelianDraft $draft)
     {
         $content = $this->getContent();
         $draft->draftKey = Str::random(10);

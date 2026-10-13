@@ -8,7 +8,8 @@ return [
     'search'           => 'Cari Produk',
     'not_found'        => 'Produk tidak ditemukan',
     'empty'            => 'Belum ada Produk',
-    'price'            => 'Harga',
+    'price'            => 'Harga Beli',
+    'sell'             => 'Harga Jual',
     'qty'              => 'Jumlah',
     'unit'             => 'Satuan',
     'back_to_index'    => 'Kembali ke daftar Produk',
@@ -34,7 +35,7 @@ return [
 
     // Attributes
     'name'         => 'Nama Produk',
-    'price'        => 'Harga',
     'stok'         => 'Qty',
+    'kategori'         => 'Kategori',
     'credit_price' => 'Harga Kredit',
 ];
