@@ -31,7 +31,14 @@
                 {{ trans('transaction.payment') }}
             </label>
 
-            <input type="text" name="payment" id="payment" class="form-control" value="{{ old('payment', $purchased->payment) }}" required>
+            <input type="text" name="payment" id="payment" class="form-control @error('payment') is-invalid @enderror"" value=" {{ old('payment', $purchased->payment) }}" required>
+
+            @error('payment')
+            <div class="invalid-feedback">
+                <i class="bx bx-radio-circle"></i>
+                {{ $message }}
+            </div>
+            @enderror
         </div>
     </div>
 

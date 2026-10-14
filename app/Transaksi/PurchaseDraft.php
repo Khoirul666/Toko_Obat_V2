@@ -12,7 +12,7 @@ abstract class PurchaseDraft
 {
     public $items = [];
 
-    public $customer = ['name' => null, 'phone' => null];
+    public $sales = ['name' => null, 'phone' => null];
     public $notes;
     public $payment;
 
@@ -24,7 +24,7 @@ abstract class PurchaseDraft
             'items'      => $this->items(),
             'total'      => 0,
             'payment'    => 0,
-            'customer'   => 0,
+            'sales'      => 0,
             'status_id'  => 0,
             'creator_id' => 0,
             'remark'     => '',
@@ -115,7 +115,7 @@ abstract class PurchaseDraft
         $transaction = new Purchase();
         $transaction->invoice_no = $this->getNewInvoiceNo();
         $transaction->items = $this->getItemsArray();
-        $transaction->sales = $this->customer;
+        $transaction->sales = $this->sales;
         $transaction->payment = $this->payment;
         $transaction->total = $this->getTotal();
         $transaction->notes = $this->notes;

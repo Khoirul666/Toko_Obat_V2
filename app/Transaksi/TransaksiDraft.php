@@ -124,8 +124,14 @@ abstract class TransaksiDraft
         $transaction->save();
 
         // Update stok produk
+        // dd($transaction);
         foreach ($this->items as $item) {
             $product = $item->product;
+
+            $produkId = $item->product->id ?? null;
+            $produk = $produkId ? Produk::find($produkId) : null;
+            $stok = $produk ? $produk->stok : 0;
+            $product->stok = $stok;
 
             $product->stok -= $item->qty;
             $product->save();

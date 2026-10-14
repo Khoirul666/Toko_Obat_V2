@@ -14,6 +14,7 @@ class Item
     public $name;
     public $unit;
     public $price;
+    public $sell;
     public $qty;
     public $item_discount = 0;
     public $item_discount_subtotal = 0;
@@ -27,6 +28,7 @@ class Item
         $this->product = $product;
         $this->qty = $qty;
         $this->price = $product->price;
+        $this->sell = $product->sell;
         $this->subtotal = $product->price * $qty;
     }
 
@@ -34,7 +36,7 @@ class Item
     {
         if (isset($newItemData['qty'])) {
             $this->qty = $newItemData['qty'];
-            $this->subtotal = $this->price * $this->qty;
+            $this->subtotal = $this->sell * $this->qty;
         }
 
         if (isset($newItemData['item_discount'])) {

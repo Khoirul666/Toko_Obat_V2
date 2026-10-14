@@ -15,7 +15,7 @@
                 <td>{{$produk->name}}</td>
                 <td>{{$produk->unit->name}}</td>
                 <td>{{$produk->stok}}</td>
-                <td>{{format_rp($produk->price)}}</td>
+                <td>{{format_rp($produk->sell)}}</td>
                 <td>
                     <form action="{{ route('penjualan.add-draft-item', [$draftKey, $produk->id]) }}" method="post" style="display:inline">
                         <input type="hidden" name="query" value="{{ isset($query) ? $query : request('query') }}">

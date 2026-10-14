@@ -18,7 +18,7 @@
                 {{ $item->name }} <br>
                 <small class="text-primary">({{ $item->unit }})</small>
             </td>
-            <td>{{ format_rp($item->price) }}</td>
+            <td>{{ format_rp($item->sell) }}</td>
             <td class="text-right">
                 Rp. {{ Form::text('item_discount', $item->item_discount, [
                 'id' => 'item_discount-' . $key,

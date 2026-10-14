@@ -37,6 +37,7 @@ class PenjualanCollection
 
     public function get($draftKey)
     {
+        // dd($draftKey);
         $content = $this->getContent();
         if (isset($content[$draftKey])) {
             return $content[$draftKey];
@@ -77,8 +78,8 @@ class PenjualanCollection
         $content = $this->getContent();
         $draft = $content[$draftKey];
 
-        $item->price = $item->product->price;
-        $item->subtotal = $item->product->price * $item->qty;
+        $item->sell = $item->product->sell;
+        $item->subtotal = $item->product->sell * $item->qty;
 
         $foundItem = $draft->search($item->product);
 

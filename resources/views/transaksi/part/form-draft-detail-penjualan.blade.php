@@ -2,7 +2,6 @@
 'route' => ['penjualan.draft-proccess', $draft->draftKey],
 'method' => 'patch'
 ]) !!}
-
 <div class="form-group">
     <label for="customer_name">
         {{ trans('transaction.customer_name') }}
@@ -44,9 +43,15 @@
                 type="text"
                 name="payment"
                 id="payment"
-                class="form-control"
+                class="form-control @error('payment') is-invalid @enderror"
                 value="{{ old('payment', $draft->payment) }}"
                 required>
+            @error('payment')
+            <div class="invalid-feedback">
+                <i class="bx bx-radio-circle"></i>
+                {{ $message }}
+            </div>
+            @enderror
         </div>
     </div>
 

@@ -70,6 +70,7 @@ class PenjualanController extends Controller
     {
         // dd($request, $draftKey, $product);
         $item = new Item($product, $request->qty);
+        // dd($item);
         $this->keranjang->addItemToDraft($draftKey, $item);
 
         flash(trans('cart.item_added', [
@@ -123,6 +124,7 @@ class PenjualanController extends Controller
             'notes'          => 'nullable|string|max:100',
         ], [
             'payment.min' => 'Pembayaran minimal ' . format_rp($request->get('total')) . '.',
+            'payment.numeric' => 'Pembayaran harus berupa angka',
         ]);
         $draft = $this->keranjang->updateDraftAttributes($draftKey, $request->only('customer', 'notes', 'payment'));
 
@@ -145,10 +147,14 @@ class PenjualanController extends Controller
 
         // check ketersedian stok
         // Cek stok
+        // dd($draft);
         foreach ($draft->items as $item) {
 
-            $stok = $item->product->stok;
             $qty  = $item->qty;
+            // Cek stok di database
+            $produkId = $item->product->id ?? null;
+            $produk = $produkId ? Produk::find($produkId) : null;
+            $stok = $produk ? $produk->stok : 0;
 
             if ($qty > $stok) {
                 flash(

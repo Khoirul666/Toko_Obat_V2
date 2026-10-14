@@ -84,9 +84,10 @@ class PembelianController extends Controller
             'notes'          => 'nullable|string|max:100',
         ], [
             'payment.min' => 'Pembayaran minimal ' . format_rp($request->get('total')) . '.',
+            'payment.numeric' => 'Pembayaran harus berupa angka',
         ]);
         $purchased = $this->keranjang->updateDraftAttributes($draftKey, $request->only('sales', 'notes', 'payment'));
-
+        // dd($purchased, 'masuk');
         if ($purchased->getItemsCount() == 0) {
             flash(trans('transaction.item_list_empty'), 'warning')->important();
 
@@ -146,8 +147,10 @@ class PembelianController extends Controller
         if (is_null($purchased)) {
             return redirect()->route('pembelian.index');
         }
+        // dd($purchased, "store");
         $transaction = $purchased->store();
         // dd($purchased->destroy);
+        // dd($transaction);
         $purchased->destroy();
         flash(trans('transaction.created', ['invoice_no' => $transaction->invoice_no]), 'success');
 
