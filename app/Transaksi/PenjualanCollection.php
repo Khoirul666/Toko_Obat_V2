@@ -85,7 +85,7 @@ class PenjualanCollection
 
         if (!is_null($foundItem)) {
             $itemKey = $draft->searchItemKeyFor($item->product);
-            $content[$draftKey]->updateItem($itemKey, ['qty' => $foundItem->qty + $item->qty]);
+            $content[$draftKey]->updateItem($itemKey, ['qty' => $foundItem->qty + $item->qty], "penjualan");
         } else {
             $content[$draftKey]->addItem($item);
         }
@@ -110,7 +110,7 @@ class PenjualanCollection
         $foundItem = $draft->search($item->product);
         if (!is_null($foundItem)) {
             $itemKey = $draft->searchItemKeyFor($item->product);
-            $content[$draftKey]->updateItem($itemKey, ['qty' => $item->qty, 'item_discount' => $item->item_discount, 'subtotal' => $item->subtotal - $item->item_discount_subtotal]);
+            $content[$draftKey]->updateItem($itemKey, ['qty' => $item->qty, 'item_discount' => $item->item_discount, 'subtotal' => $item->subtotal - $item->item_discount_subtotal], "penjualan");
         }
         $this->session->put($this->instance, $content);
 

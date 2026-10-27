@@ -78,7 +78,7 @@ abstract class TransaksiDraft
         return $this->items()->sum('item_discount_subtotal');
     }
 
-    public function updateItem($itemKey, $newItemData)
+    public function updateItem($itemKey, $newItemData, $posisi)
     {
         if (!isset($this->items[$itemKey])) {
             return;
@@ -86,7 +86,7 @@ abstract class TransaksiDraft
 
         $item = $this->items[$itemKey];
 
-        $this->items[$itemKey] = $item->updateAttribute($newItemData);
+        $this->items[$itemKey] = $item->updateAttribute($newItemData, $posisi);
 
         return $item;
     }

@@ -67,18 +67,23 @@ class PembelianCollection
 
     public function addItemToDraft($draftKey, Item $item)
     {
+        // dd($item);
         $content = $this->getContent();
         $draft = $content[$draftKey];
 
         $item->price = $item->product->price;
+        // var_dump($item->price, $item->qty, $item);
         $item->subtotal = $item->product->price * $item->qty;
+        // var_dump($item->subtotal, "sasasa");
 
         $foundItem = $draft->search($item->product);
-
+        // dd($foundItem);
         if (!is_null($foundItem)) {
-            // dd($draftKey, $item);
+            // dd($draftKey, $foundItem);
             $itemKey = $draft->searchItemKeyFor($item->product);
-            $content[$draftKey]->updateItem($itemKey, ['qty' => $foundItem->qty + $item->qty]);
+            var_dump("<br>", $itemKey);
+            $content[$draftKey]->updateItem($itemKey, ['qty' => $foundItem->qty + $item->qty], 'pembelian');
+            // dd($item, $content);
         } else {
             $content[$draftKey]->addItem($item);
         }
@@ -95,7 +100,8 @@ class PembelianCollection
         $foundItem = $draft->search($item->product);
         if (!is_null($foundItem)) {
             $itemKey = $draft->searchItemKeyFor($item->product);
-            $content[$draftKey]->updateItem($itemKey, ['qty' => $item->qty, 'item_discount' => $item->item_discount, 'subtotal' => $item->subtotal - $item->item_discount_subtotal]);
+            // dd($item);
+            $content[$draftKey]->updateItem($itemKey, ['qty' => $item->qty, 'item_discount' => $item->item_discount, 'subtotal' => $item->subtotal - $item->item_discount_subtotal], 'pembelian');
         }
         $this->session->put($this->instance, $content);
 

@@ -32,11 +32,16 @@ class Item
         $this->subtotal = $product->price * $qty;
     }
 
-    public function updateAttribute(array $newItemData)
+    public function updateAttribute(array $newItemData, $posisi)
     {
         if (isset($newItemData['qty'])) {
             $this->qty = $newItemData['qty'];
-            $this->subtotal = $this->sell * $this->qty;
+            if ($posisi == "pembelian") {
+                $this->subtotal = $this->price * $this->qty;
+            }
+            if ($posisi == "penjualan") {
+                $this->subtotal = $this->sell * $this->qty;
+            }
         }
 
         if (isset($newItemData['item_discount'])) {

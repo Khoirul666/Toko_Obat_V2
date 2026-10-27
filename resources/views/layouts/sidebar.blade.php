@@ -49,7 +49,7 @@
                             <a href="{{route('kategori.index')}}">Kategori</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="{{route('produk.index')}}">Daftar</a>
+                            <a href="{{route('produk.index')}}">Obat</a>
                         </li>
                     </ul>
                 </li>
@@ -57,7 +57,7 @@
                 <li class="sidebar-item {{request()->is('transaksi*') ? 'active' : ''}} has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
-                        <span>Laporan</span>
+                        <span>Data Transaksi</span>
                     </a>
                     <ul class="submenu {{request()->is('transaksi*') ? 'active' : ''}} ">
                         <li class="submenu-item ">
@@ -65,6 +65,9 @@
                         </li>
                         <li class="submenu-item ">
                             <a href="{{route('transaksi.pembelian.index')}}">Pembelian</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{route('transaksi.pembelian.index')}}">Laporan</a>
                         </li>
                     </ul>
                 </li>
