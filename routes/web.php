@@ -72,12 +72,16 @@ Route::group(['middleware' => 'auth'], function () {
         */
         Route::group(['prefix' => 'penjualan', 'as' => 'penjualan.'], function () {
             Route::get('/', 'TransaksiPenjualanController@index')->name('index');
+            Route::get('{transaksi}', 'TransaksiPenjualanController@show')->name('show');
+            Route::get('unduh/{transaksi}', 'TransaksiPenjualanController@show')->name('download');
         });
         /*
         * Transaksi Pembelian
         */
         Route::group(['prefix' => 'pembelian', 'as' => 'pembelian.'], function () {
             Route::get('/', 'TransaksiPembelianController@index')->name('index');
+            Route::get('{purchase}', 'TransaksiPembelianController@show')->name('show');
+            Route::get('unduh/{purchase}', 'TransaksiPembelianController@unduh')->name('download');
         });
     });
 });

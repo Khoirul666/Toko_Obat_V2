@@ -49,9 +49,10 @@ class ProdukController extends Controller
         $productData = $request->validate([
             'name'         => 'required|max:20',
             'price'        => 'required|numeric',
-            'sell'        => 'required|numeric',
+            'sell'         => 'required|numeric',
+            'stok'         => 'required|integer|min:0',
             'unit_id'      => 'required|numeric|exists:satuan,id',
-            'kategori_id'      => 'required|numeric|exists:kategori,id',
+            'kategori_id'  => 'required|numeric|exists:kategori,id',
         ]);
 
         $produk->update($productData);

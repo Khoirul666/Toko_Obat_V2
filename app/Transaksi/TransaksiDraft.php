@@ -164,7 +164,7 @@ abstract class TransaksiDraft
                 'id'                     => $item->product->id,
                 'name'                   => $item->name,
                 'unit'                   => $item->unit,
-                'price'                  => $item->price,
+                'sell'                   => $item->sell,
                 'qty'                    => $item->qty,
                 'item_discount'          => $item->item_discount,
                 'item_discount_subtotal' => $item->item_discount_subtotal,

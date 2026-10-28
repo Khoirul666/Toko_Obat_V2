@@ -61,6 +61,10 @@
                 <input type="text" name="sell" id="sell" class="form-control" value="{{old('sell',$editableProduct->sell)}}" required>
             </div>
             <div class="form-group">
+                <label for="stok">{{__('produk.stok')}}</label>
+                <input type="text" name="stok" id="stok" class="form-control" value="{{old('stok',$editableProduct->stok)}}" required>
+            </div>
+            <div class="form-group">
                 <label for="unit_id">{{__('produk.unit')}}</label>
                 <select name="unit_id" id="unit_id" class="form-control" required>
                     @foreach($satuan as $satuan)
