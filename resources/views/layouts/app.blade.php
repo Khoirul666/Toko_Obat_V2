@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="{{asset('mazer-1.0.0/dist')}}/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="{{asset('mazer-1.0.0/dist')}}/assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{asset('mazer-1.0.0/dist')}}/assets/vendors/fontawesome/all.min.css">
+    <link rel="stylesheet" href="{{asset('mazer-1.0.0/dist')}}/assets/vendors/iconly/bold.css">
     <link rel="stylesheet" href="{{asset('mazer-1.0.0/dist')}}/assets/css/app.css">
 </head>
 

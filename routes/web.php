@@ -83,5 +83,13 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('{purchase}', 'TransaksiPembelianController@show')->name('show');
             Route::get('unduh/{purchase}', 'TransaksiPembelianController@unduh')->name('download');
         });
+        /*
+        * Transaksi Pembelian
+        */
+        Route::group(['prefix' => 'laporan', 'as' => 'laporan.'], function () {
+            Route::get('', 'LaporanController@index')->name('index');
+            Route::get('bulan', 'LaporanController@bulan')->name('bulan');
+            Route::get('filter', 'LaporanController@filter')->name('filter');
+        });
     });
 });

@@ -67,7 +67,7 @@
                             <a href="{{route('transaksi.pembelian.index')}}">Pembelian</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="{{route('transaksi.pembelian.index')}}">Laporan</a>
+                            <a href="{{route('transaksi.laporan.index')}}">Laporan</a>
                         </li>
                     </ul>
                 </li>
