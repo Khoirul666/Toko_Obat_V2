@@ -10,12 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('mazer-1.0.0/dist')}}/assets/css/bootstrap.css">
 
+    <link rel="stylesheet" href="{{asset('mazer-1.0.0/dist')}}/assets/vendors/iconly/bold.css">
+
     @yield('ext_css')
 
     <link rel="stylesheet" href="{{asset('mazer-1.0.0/dist')}}/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="{{asset('mazer-1.0.0/dist')}}/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="{{asset('mazer-1.0.0/dist')}}/assets/vendors/iconly/bold.css">
     <link rel="stylesheet" href="{{asset('mazer-1.0.0/dist')}}/assets/css/app.css">
+    <link rel="shortcut icon" href="{{asset('mazer-1.0.0/dist')}}/assets/images/favicon.svg" type="image/x-icon">
 </head>
 
 <body>
@@ -27,6 +30,7 @@
             <div id="main-content">
                 @include('flash::message')
                 @yield('content')
+                <!-- 
                 <section class="row">
                     <div class="card">
                         <div class="card-header">
@@ -40,7 +44,8 @@
                             quibusdam ratione ullam!
                         </div>
                     </div>
-                </section>
+                </section> -->
+
             </div>
         </div>
     </div>
@@ -48,8 +53,9 @@
     <script src="{{asset('mazer-1.0.0/dist')}}/assets/js/bootstrap.bundle.min.js"></script>
 
     <script src="{{asset('mazer-1.0.0/dist')}}/assets/vendors/fontawesome/all.min.js"></script>
-    @stack('ext_js')
     <script src="{{asset('mazer-1.0.0/dist')}}/assets/js/main.js"></script>
+
+    @stack('ext_js')
     @yield('script')
 </body>
 

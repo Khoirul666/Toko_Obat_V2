@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Kategori;
+use App\Produk;
+use App\Setting;
 use App\Transaksi\TransaksiCollection;
 
 class DashboardController extends Controller
 {
-    private $transaksi;
-    private $posisi = 'dashboard';
-
-    public function __construct()
-    {
-        $this->transaksi = new TransaksiCollection();
-    }
-
     public function index()
     {
-        $posisi = $this->posisi;
-        return view('dashboard', compact('posisi'));
+        $minimumStok = Setting::where('key', 'minimum_stok')->value('value');
+        $produk = Produk::where('stok', '<=', $minimumStok);
+        $kategori = Kategori::count();
+        $stok = Produk::sum('stok');
+        $data = [
+            'produk' => $produk->get(),
+            'jumlahProduk' => $produk->count(),
+            'kategori' => $kategori,
+            'stok' => $stok,
+        ];
+        return view('dashboard', compact('data'));
     }
 }

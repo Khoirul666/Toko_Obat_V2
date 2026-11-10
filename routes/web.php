@@ -92,4 +92,11 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('filter', 'LaporanController@filter')->name('filter');
         });
     });
+    /*
+     * Setting
+     */
+    Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
+        Route::get('/', 'SettingController@index')->name('index');
+        Route::post('/{setting}', 'SettingController@update')->name('update');
+    });
 });
